@@ -13,10 +13,13 @@ CREATE TABLE tasks
 );
 
   ALTER TABLE tasks DROP completed;
-  ALTER TABLE tasks DROP updated_at;
-  ALTER TABLE tasks ADD updated_at timestamp
-  without time zone NOT NULL DEFAULT now
+  ALTER TABLE tasks ALTER COLUMN updated_at
+  SET
+  DEFAULT now
   ();
+  ALTER TABLE tasks ALTER COLUMN updated_at
+  SET
+  NOT NULL;
   ALTER TABLE tasks ADD completed_at timestamp DEFAULT NULL;
 
   INSERT INTO tasks
